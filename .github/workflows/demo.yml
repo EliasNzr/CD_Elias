@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Code Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v1
       
       - name: Login to Azure
         uses: azure/login@v1
@@ -24,7 +24,7 @@ jobs:
           client-id: ${{ secrets.Client_ID }}
           tenant-id: ${{ secrets.Tenant_ID }}
           subscription-id: ${{ secrets.Subscription_ID }}
-      - name: 'Deploy to Azure Web App'
+      - name: 'DeployAzure WebApp'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
