@@ -10,13 +10,27 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
+
+      - name: Upload artifact for deploy job
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release
+          path: release.zip
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Code Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       
       - name: Login to Azure
         uses: azure/login@v1
